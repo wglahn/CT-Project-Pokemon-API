@@ -1,0 +1,57 @@
+{% extends 'base.html.j2' %}
+
+{% block title %}
+    Pokemon Team Entry
+{% endblock %}
+
+{% block content %}
+
+    <div class="row container-fluid ">
+        <div class="display-title">
+            <h1>Team Selection</h1>
+        </div>
+    </div>
+
+    <form action="{{url_for('main.entry')}}" method="POST">
+        <div class="row container-fluid">
+            <div class="col-4">
+                {{ form.hidden_tag() }}
+                <div>
+                    {{form.name.label(class="from-label")}}
+                    <br>
+                    {{form.name(class="form-control mb-2")}}
+                    <br>
+                    {% for error in form.name.errors %}
+                        <small style="color:red;">{{error}}</small>
+                    {% endfor %}
+                </div>
+                
+                <div>
+                    {{form.submit(class="btn btn-secondary form-control")}}
+                </div>
+            </div>
+        </div>
+    </form>
+
+    {% if pokemon %}
+ 
+    <div class="row container-fluid mt-4">
+        <div class="col">
+            <div class="card" style="width: 15rem; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                <img src="{{pokemon.sprite}}" class="card-img-top" style="margin:0px;" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">{{pokemon.name.title()}}</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">HP = {{pokemon.hp}}</li>
+                    <li class="list-group-item">Attack = {{pokemon.attack}}</li>
+                    <li class="list-group-item">Defense = {{pokemon.defense}}</li>
+                    <li class="list-group-item">Ability = {{pokemon.ability.title()}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    {% endif %}
+
+{% endblock %}

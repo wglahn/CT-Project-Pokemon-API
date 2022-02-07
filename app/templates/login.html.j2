@@ -1,0 +1,52 @@
+{% extends 'base.html.j2' %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block content %}
+
+
+    <div class="row container-fluid ">
+        <div class="display-title">
+            <h1>Login</h1>
+        </div>
+    </div>
+
+    <form action="{{url_for('auth.login')}}" method="POST">
+        <div class="row container-fluid ">
+            <div class="col">
+                <div class="controls-group">
+                    {{ form.hidden_tag() }}
+
+                    {{form.email.label(class="from-label")}}
+                    {{form.email(class="form-control mb-3")}}
+
+                    {% for error in form.email.errors %}
+                        <small style="color:red;">{{error}}</small>
+                    {% endfor %}
+
+                    {{form.password.label(class="from-label")}}
+                    {{form.password(class="form-control mb-3")}}
+                    {% for error in form.password.errors %}
+                        <small style="color:red;">{{error}}</small>
+                    {% endfor %}
+
+                    {{form.submit(class="btn btn-secondary form-control mt-3")}}
+
+                    <div style="margin-top:5%;">
+                        <div class="container-fluid d-flex justify-content-center">
+                            <a href="{{url_for('auth.register')}}">New Player? Please Register Here.</a>
+                        </div>
+                    </div>
+                    <div>
+                        <small style="color:red;">{{error}}</small>
+                    </div>
+                </div>
+            </div> 
+            <div class="col">
+                <img src="../static/images/sandslash.png" class="img-fluid" style="height:350px;">
+            </div>
+        </div>
+    </form>
+{% endblock %}

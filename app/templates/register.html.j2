@@ -1,0 +1,66 @@
+{% extends 'base.html.j2'%}
+{% block title %}
+    {% if current_user.is_authenticated %}
+    Edit Profile
+    {% else %}
+    Register
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<h1>
+    <div class="row container-fluid ">
+        <div class="display-title">
+        {% if current_user.is_authenticated %}
+        Edit Profile
+        {% else %}
+        Register
+        {% endif %}
+        </div>
+    </div>
+</h1>
+
+<form action="{{url_for('auth.edit_profile') if current_user.is_authenticated else url_for('auth.register')}}" method='POST'>
+    <div class="row container-fluid">
+        <div class="col">
+            <div class="controls-group">
+                {{  form.hidden_tag()  }}
+
+                {# first #}
+                {{form.first_name.label(class="form-label")}} 
+                {{form.first_name(class="form-control mb-2", value=current_user.first_name)}}
+
+                {# lastname #}
+                {{form.last_name.label(class="form-label")}} 
+                {{form.last_name(class="form-control mb-2", value=current_user.last_name)}} 
+
+                {# email #}
+                {{form.email.label(class="form-label")}} 
+                {{form.email(class="form-control mb-2", value=current_user.email)}}
+                {% for error in form.email.errors %}
+                    <small style="color:red;">{{error}}</small><br>
+                {%endfor%}
+
+                {# password #}
+                {{form.password.label(class="form-label")}} 
+                {{form.password(class="form-control mb-2")}}
+
+                {# confirm password #}
+                {{form.confirm_password.label(class="form-label")}} 
+                {{form.confirm_password(class="form-control mb-2")}}  
+                {% for error in form.confirm_password.errors %}
+                    <small style="color:red;">{{error}}</small><br>
+                {%endfor%}
+
+                {# submit #}
+                {{form.submit(class="btn btn-secondary form-control mt-3")}}
+            </div>
+        </div>
+        <div class="col">
+            <img src="../static/images/charmander.png" class="img-fluid" style="height:80%">
+        </div>
+    </div>
+
+</form>
+
+{% endblock %}

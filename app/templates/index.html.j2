@@ -1,0 +1,60 @@
+{% extends 'base.html.j2' %}
+
+{% block title %}
+    Pokemon Battle
+{% endblock %}
+
+{% block content %}
+
+    <div class="row container-fluid ">
+        <div class="col">
+            <div class="row mt-5 pt-5" style="text-shadow: 2px 2px 5px red;">
+                <h1>Welcome to Pokemon Battle</h1>
+            </div>
+            <div class="row mt-5">
+                <h4>Login To Begin</h4>
+                <h4>Select 5 Pokemon To Essemble Your Team</h4>
+                <h4>Battle Another Team</h4>
+            </div>
+            <div class="row mt-5">
+                <h4>Let's Get Ready To Rumble!</h4>
+            </div>
+        </div>
+
+        <div class="col">
+
+            <div id="carouselfade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="1500">
+                    <img src="../static/images/pikachu.png" class="d-sm-block w-50" style="padding-top:15%;" alt="Pikachu">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="1500">
+                    <img src="../static/images/armaldo.png" class="d-block w-75" style="padding-top:10%;" alt="Armaldo">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="1500">
+                    <img src="../static/images/zapdos.png" class="d-block w-75" style="padding-top:20%;" alt="Zapdos">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                    <img src="../static/images/eevee.png" class="d-block w-50" style="padding-top:20%;" alt="Eevee">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                    <img src="../static/images/charizard.png" class="d-block w-75" style="padding-top:0%;" alt="Charizard">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                    <img src="../static/images/pachirisu.png" class="d-block w-50" style="padding-top:15%;" alt="Pachirisu">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                    <img src="../static/images/gengar.png" class="d-block w-50" style="padding-top:20%;" alt="Gengar">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                    <img src="../static/images/sandshrew.png" class="d-block w-50" style="padding-top:20%;" alt="Sandshrew">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                    <img src="../static/images/snorlax.png" class="d-block w-50" style="padding-top:20%;" alt="Snorlax">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
