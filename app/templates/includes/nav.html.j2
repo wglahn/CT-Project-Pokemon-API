@@ -22,7 +22,7 @@
                     <div class="col-10 d-flex justify-content-end">
                         {% if current_user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link active" href="{{url_for('auth.register')}}">Edit Profile</a>
+                            <a class="nav-link active" href="{{url_for('auth.edit_profile')}}">Edit Profile</a>
                         </li>
                         {% endif %}
                     </div>
