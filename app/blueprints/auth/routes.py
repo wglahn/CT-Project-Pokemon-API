@@ -15,7 +15,7 @@ def login():
         if u and u.check_hashed_password(password):
             #good email and password
             login_user(u)
-            flash('Welcome to Fakebook','success')
+            flash('Welcome to Pokemon Battle!','success')
             return redirect(url_for('main.entry')) #good login
         flash('Incorrect Email password Combo','danger')
         return render_template('login.html.j2',form=form) #bad login
