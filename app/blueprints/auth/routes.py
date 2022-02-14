@@ -16,7 +16,7 @@ def login():
             #good email and password
             login_user(u)
             flash('Welcome to Pokemon Battle!','success')
-            return redirect(url_for('main.entry')) #good login
+            return redirect(url_for('main.index')) #good login
         flash('Incorrect Email password Combo','danger')
         return render_template('login.html.j2',form=form) #bad login
     return render_template('login.html.j2',form=form) #get req
@@ -52,8 +52,11 @@ def register():
             #Error Return
             return render_template('register.html.j2', form = form)
         # If it worked
-        flash('You have registered successfully', 'success')
-        return redirect(url_for('auth.login'))
+        login_user(new_user_object)
+        flash('Welcome to Pokemon Battle!','success')
+        return redirect(url_for('main.team')) #good login
+        # flash('You have registered successfully', 'success')
+        # return redirect(url_for('auth.login'))
     #Get Return
     return render_template('register.html.j2', form = form)
 
@@ -63,8 +66,8 @@ def edit_profile():
     form = EditProfileForm()
     if request.method == 'POST' and form.validate_on_submit():
         new_user_data={
-                "first_name":form.first_name.data.title(),
-                "last_name":form.last_name.data.title(),
+                "first_name":form.first_name.data,
+                "last_name":form.last_name.data,
                 "email":form.email.data.lower(),
                 "password":form.password.data
         }

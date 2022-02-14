@@ -16,7 +16,7 @@ login.login_message_category='warning'
 
 # Do inits for database stuff
 db = SQLAlchemy()
-migrate = Migrate()
+migrate = Migrate(compare_type=True)
 
 def create_app(config_class=Config):
     #init the app

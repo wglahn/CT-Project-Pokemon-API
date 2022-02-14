@@ -1,0 +1,47 @@
+{% extends 'base.html.j2' %}
+
+{% block title %}
+    Pokemon Opponent Selection
+{% endblock %}
+
+{% block content %}
+
+    <form action="{{url_for('main.opponent')}}" method="POST">
+    <div class="row container-fluid">
+        <div class="col-2">
+            {{ form.hidden_tag() }}
+            <div class="display-title">
+                <h1>Opponent Selection</h1>
+            </div>
+            {{form.opponent.label(class="from-label")}}
+            {{form.opponent(class="form-control")}}
+            {{form.submit(class="btn btn-secondary form-control mt-4")}}
+
+            {% if pokemen %}
+            <a href="{{url_for('main.battle', id=id)}}" style="width:100%; color:white;" class="btn btn-secondary mt-4">Attack</a>
+            {% endif %}
+        </div>
+
+        {% if pokemen %}
+        {% for pokemon in pokemen %}
+        <div class="col-2 mt-4">
+            <div class="card" style="width: 11rem; height:100%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                <img src="{{pokemon.sprite}}" class="card-img-top" style="margin:0px;" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">{{pokemon.name.title()}}</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">HP = {{pokemon.hp}}</li>
+                    <li class="list-group-item">Attack = {{pokemon.attack}}</li>
+                    <li class="list-group-item">Defense = {{pokemon.defense}}</li>
+                    <li class="list-group-item">Ability = {{pokemon.ability.title()}}</li>
+                </ul>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+    </form>
+
+{% endblock %}

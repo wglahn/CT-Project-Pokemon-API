@@ -1,0 +1,36 @@
+{% extends 'base.html.j2' %}
+
+{% block title %}
+    Pokemon Results
+{% endblock %}
+
+{% block content %}
+
+<h1 class="mt-4">Results</h1>
+<br>
+<h4> {{line1}} </h4>
+<h4> {{line2}} </h4>
+<br>
+
+<table class="table table-light table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Result</th>
+            <th scope="col">Attack Method</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if results %}
+        {% for row in results %}
+        <tr>
+            <th scope="row">{{row.created_on}}</th>
+            <td>{{row.result}}</td>
+            <td>{{row.selection}}</td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+    </tbody>
+</table>
+
+{% endblock%}

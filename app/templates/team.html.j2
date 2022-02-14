@@ -6,9 +6,9 @@
 
 {% block content %}
 
-    <form action="{{url_for('main.entry')}}" method="POST">
+    <form action="{{url_for('main.team')}}" method="POST">
         <div class="row container-fluid">
-            <div class="col-4">
+            <div class="col-2">
 
                 <div class="display-title">
                     <h1>Team Selection</h1>
@@ -24,10 +24,10 @@
 
             </div>
 
-            {% if pokemon %}
- 
-            <div class="col mt-4">
-                <div class="card" style="width: 16rem; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+            {% if pokemen %}
+            {% for pokemon in pokemen %}
+            <div class="col-2 mt-4">
+                <div class="card" style="width: 11rem; height:100%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
                     <img src="{{pokemon.sprite}}" class="card-img-top" style="margin:0px;" alt="">
                     <div class="card-body">
                         <h5 class="card-title">{{pokemon.name.title()}}</h5>
@@ -37,15 +37,14 @@
                         <li class="list-group-item">Attack = {{pokemon.attack}}</li>
                         <li class="list-group-item">Defense = {{pokemon.defense}}</li>
                         <li class="list-group-item">Ability = {{pokemon.ability.title()}}</li>
+                        <li class="list-group-item"><a href="{{url_for('main.delete', id=pokemon.id)}}" style="width:100%;" class="btn btn-secondary">Delete</a></li>
                     </ul>
                 </div>
             </div>
-
+            {% endfor %}
             {% endif %}
 
         </div>
     </form>
-
-    
 
 {% endblock %}
