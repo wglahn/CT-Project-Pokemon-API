@@ -5,6 +5,7 @@ import requests
 from flask_login import login_required, current_user
 from app.models import User, Pokemon, UserPokemon, Result
 from random import randint
+from sqlalchemy import desc
 
 # Routes
 
@@ -175,9 +176,9 @@ def battle(id=None):
 @login_required
 def results():
 
-    # results = current_user.results
     result = Result()
-    results = result.query.filter_by(user_id=current_user.id).order_by(result.created_on).limit(8)
+
+    results = result.query.filter_by(user_id=current_user.id).order_by(desc('created_on')).limit(8)
 
     wins = result.query.filter_by(result='Win', user_id=current_user.id).count()
     losses = result.query.filter_by(result='Lose', user_id=current_user.id).count()
